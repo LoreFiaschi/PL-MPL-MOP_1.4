@@ -1,0 +1,198 @@
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.configuration import Configuration
+Configuration.show_compile_hint = False
+
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/multiprocessing/pool.py", line 119, in worker
+    result = (True, func(*args, **kwds))
+  File "/usr/lib/python3.6/multiprocessing/pool.py", line 44, in mapstar
+    return list(map(*args))
+  File "launcher_MaF11.py", line 30, in optimize_nsga3
+    with open("..NSGAIII/outputs/pymoo/MaF11_"+str(i+1)+".txt", "w") as file:
+FileNotFoundError: [Errno 2] No such file or directory: '..NSGAIII/outputs/pymoo/MaF11_15.txt'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "launcher_MaF11.py", line 101, in <module>
+    p.map(optimize_nsga3, range(50))
+  File "/usr/lib/python3.6/multiprocessing/pool.py", line 266, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/usr/lib/python3.6/multiprocessing/pool.py", line 644, in get
+    raise self._value
+FileNotFoundError: [Errno 2] No such file or directory: '..NSGAIII/outputs/pymoo/MaF11_15.txt'
