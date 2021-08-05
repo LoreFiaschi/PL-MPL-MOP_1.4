@@ -1,6 +1,8 @@
 __precompile__()
 module SCHMIEDLE
 
+# TODO 
+
 include("favoring.jl")
 include("indivs.jl")
 include("../../utils/binarycoding.jl")
