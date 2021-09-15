@@ -1,8 +1,6 @@
 __precompile__()
 module SCHMIEDLE
 
-# TODO 
-
 include("favoring.jl")
 include("indivs.jl")
 include("../../utils/binarycoding.jl")
@@ -43,8 +41,9 @@ function _schmiedle(pop_size::Integer, sense, priorities::Vector{T}, max_it::Int
         P[pop_size+i] = deepcopy(P[i])
     end
     
-    determine_favoring!(P, priorities)
-	sort!(P, by = x->x.fitness, rev = true) # needed by tournament selection
+	num_priorities = length(priorities)
+    determine_favoring!(P, priorities, num_priorities)
+	sort!(P, by = x->x.fitness) # needed by tournament selection
     
 	@showprogress refreshtime for it=1:max_it
     
@@ -61,18 +60,15 @@ function _schmiedle(pop_size::Integer, sense, priorities::Vector{T}, max_it::Int
             eval!(P[pop_size+i], fdecode!, z, fCV)
             eval!(P[pop_size+i+1], fdecode!, z, fCV)
         end
-
-        sort!(P, by = x->x.fitness, rev = true)
         
-        determine_favoring!(P, priorities)
-		sort!(P, by = x->x.fitness, rev = true)
+        determine_favoring!(P, priorities, num_priorities)
+		sort!(P, by = x->x.fitness)
 
 		# Random selection of those exceeding the pop size
 		if P[pop_size].fitness == P[pop_size+1].fitness
 			idx_first = findfirst(x->(x.fitness == P[pop_size].fitness), P)
 			idx_last = findlast(x->(x.fitness == P[pop_size].fitness), P)
 			shuffle!(view(P, idx_first:idx_last))
-			sort!(view(P, idx_first:idx_last), by = x->x.fitness, rev=true, alg=PartialQuickSort(pop_size-idx_first+1))
 		end
 
     end

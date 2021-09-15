@@ -7,13 +7,17 @@ mutable struct indiv{G, P, Y}
     indiv(x::G, pheno::P, y::Y, CV) where {G,P,Y} =
         new{G, P, Y}(x, pheno, y, CV, zero(UInt16))
 end
+
 function create_indiv(x, fdecode::Function, z::Function, fCV::Function)
     pheno = fdecode(x)
     y = z(pheno)
     indiv(x, pheno, y, fCV(pheno))
 end
+
 Base.show(io::IO, ind::indiv) = print(io, "indiv($(repr_pheno(ind.pheno)) : $(ind.y) | rank : $(ind.fitness))")
+
 repr_pheno(x) = repr(x)
+
 function repr_pheno(x::Union{BitVector, Vector{Bool}})
     res = map(x->x ? '1' : '0', x)
     if length(res) <= 40
@@ -32,7 +36,7 @@ end
 
 function tournament_selection(P, popSize)
     a, b = rand(1:popSize), rand(1:popSize)
-    if P[a].fitness < P[b].fitness      #return the best one (crowded comparison operator)
+    if P[a].fitness < P[b].fitness      #return the best one
 		return P[a]
     elseif P[b].fitness < P[a].fitness
         return P[b]
