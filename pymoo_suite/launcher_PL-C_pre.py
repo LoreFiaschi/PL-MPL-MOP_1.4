@@ -1,4 +1,4 @@
-from problems import MPL4_std
+from problems import MPL5_std
 from pymoo.algorithms.nsga3 import NSGA3
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.algorithms.moead import MOEAD
@@ -9,19 +9,18 @@ import numpy as np
 from multiprocessing import Pool
 from math import pi
 
-alpha = 2.5
-beta = 10
 
-f4 = lambda X : np.cos(pi*X[:,0]/2)*np.cos(pi*X[:,1]/2)+beta*(X[:,0]**(alpha*X[:,2])-X[:,1])**2
-f5 = lambda X : np.cos(pi*X[:,0]/2)*np.sin(pi*X[:,1]/2)+beta*(X[:,0]**(alpha*X[:,2])-X[:,1])**2
-f6 = lambda X : np.sin(pi*X[:,0]/2)+beta*(X[:,0]**(alpha*X[:,2])-X[:,1])**2
+r  = lambda X : np.sqrt(X[:,0]**2+X[:,1]**2)
 
-f7 = lambda X : np.cos(pi/3*(X[:,0]+X[:,2]-1))
-f8 = lambda X : np.cos(pi*4/3*(X[:,0]+X[:,2]))
-f9 = lambda X : 1/(1+0.3*(X[:,0]+X[:,2]-1)**2)-2/(1+1750*(X[:,0]+X[:,2]-1)**2)
+f4 = lambda X : np.cos(2*r(X))
+f5 = lambda X : -np.sin(2*r(X))
+
+f6 = lambda X : numpy.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*4), axis=1)
+f7 = lambda X : numpy.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*[10, 6]), axis=1)
+f8 = lambda X : numpy.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*[6, 10]), axis=1)
 
 def optimize_nsga3(i):
-    problem = MPL4_std()
+    problem = MPL5_std()
 
     ref_dirs = get_reference_directions("das-dennis", 3, n_partitions=12)
     algorithm = NSGA3(ref_dirs = ref_dirs,
@@ -40,21 +39,20 @@ def optimize_nsga3(i):
     F6 = f6(res.F)
     F7 = f7(res.F)
     F8 = f8(res.F)
-    F9 = f9(res.F)
 
     num_ind = np.size(res.F, 0)
 
-    with open("../outputs/NSGAIII/PL-B_pre_"+str(i+1)+".txt", "w") as file:
+    with open("../outputs/NSGAIII/PL-C_pre_"+str(i+1)+".txt", "w") as file:
         file.write(str(num_ind)+"\n");
         file.write(str(3)+"\n");
         for j in range(0, num_ind):
             file.write(str(res.F[j,0])+";"+str(res.F[j,1])+";"+str(res.F[j,2])+"\n");
-            file.write(str(F4[j])+";"+str(F5[j])+";"+str(F6[j])+"\n");
-            file.write(str(F7[j])+";"+str(F8[j])+";"+str(F9[j])+"\n");
+            file.write(str(F4[j])+";"+str(F5[j])+"\n");
+            file.write(str(F6[j])+";"+str(F7[j])+";"+str(F8[j])+"\n");
 
 def optimize_moead(i):
 
-    problem = MPL4_std()
+    problem = MPL5_std()
 
     ref_dirs = get_reference_directions("das-dennis", 3, n_partitions=12)
     algorithm = MOEAD(ref_dirs = ref_dirs,
@@ -75,21 +73,20 @@ def optimize_moead(i):
     F6 = f6(res.F)
     F7 = f7(res.F)
     F8 = f8(res.F)
-    F9 = f9(res.F)
     
     num_ind = np.size(res.F, 0)
 
-    with open("../outputs/MOEAD/PL-B_pre_"+str(i+1)+".txt", "w") as file:
+    with open("../outputs/MOEAD/PL-C_pre_"+str(i+1)+".txt", "w") as file:
         file.write(str(num_ind)+"\n");
         file.write(str(3)+"\n");
         for j in range(0, num_ind):
             file.write(str(res.F[j,0])+";"+str(res.F[j,1])+";"+str(res.F[j,2])+"\n");
-            file.write(str(F4[j])+";"+str(F5[j])+";"+str(F6[j])+"\n");
-            file.write(str(F7[j])+";"+str(F8[j])+";"+str(F9[j])+"\n");
+            file.write(str(F4[j])+";"+str(F5[j])+"\n");
+            file.write(str(F6[j])+";"+str(F7[j])+";"+str(F8[j])+"\n");
             
 def optimize_nsga2(i):
 
-    problem = MPL4_std()
+    problem = MPL5_std()
 
     algorithm = NSGA2(pop_size = 100)
 
@@ -106,17 +103,16 @@ def optimize_nsga2(i):
     F6 = f6(res.F)
     F7 = f7(res.F)
     F8 = f8(res.F)
-    F9 = f9(res.F)
 
     num_ind = np.size(res.F, 0)
 
-    with open("../outputs/NSGAII/PL-B_pre_"+str(i+1)+".txt", "w") as file:
+    with open("../outputs/NSGAII/PL-C_pre_"+str(i+1)+".txt", "w") as file:
         file.write(str(num_ind)+"\n");
         file.write(str(3)+"\n");
         for j in range(0, num_ind):
             file.write(str(res.F[j,0])+";"+str(res.F[j,1])+";"+str(res.F[j,2])+"\n");
-            file.write(str(F4[j])+";"+str(F5[j])+";"+str(F6[j])+"\n");
-            file.write(str(F7[j])+";"+str(F8[j])+";"+str(F9[j])+"\n");
+            file.write(str(F4[j])+";"+str(F5[j])+"\n");
+            file.write(str(F6[j])+";"+str(F7[j])+";"+str(F8[j])+"\n");
 
 
 

@@ -100,6 +100,57 @@ class MPL4_std(Problem):
         out["F"] = np.column_stack([f1, f2, f3])
         out["G"] = 0
 
+class MPL5(Problem):
+
+        def __init__(self):
+            super().__init__(n_var=2,
+                             n_obj=8,
+                             n_constr=0,
+                             xl=np.zeros(2),
+                             xu=np.ones(2)*10)
+        
+        def _evaluate(self, X, out, *args, **kwargs):
+        
+            p = np.ones((np.size(X, axis=0), n_var))
+            p1 = p*4
+            p2 = p*[10, 6]
+            p3 = p*[6,10]
+    
+            r = np.sqrt(X[:,0]**2+X[:,1]**2)
+        
+            f1 = X[:,0]
+            f2 = X[:,1]
+            f3 = 10*(np.exp(-r) / (1 + np.exp(-r))) * (0.3 + np.cos(2*r)**2)
+            
+            f4 =  np.cos(2*r)
+            f5 = -np.sin(2*r)
+            
+            f6 = numpy.linalg.norm(X-p1, axis=1)
+            f7 = numpy.linalg.norm(X-p2, axis=1)
+            f8 = numpy.linalg.norm(X-p3, axis=1)
+
+            out["F"] = np.column_stack([f1, f2, f3, f4, f5, f6, f7, f8])
+            out["G"] = 0
+            
+class MPL5_std(Problem):
+
+        def __init__(self):
+            super().__init__(n_var=2,
+                             n_obj=3,
+                             n_constr=0,
+                             xl=np.zeros(2),
+                             xu=np.ones(2)*10)
+        
+        def _evaluate(self, X, out, *args, **kwargs):
+    
+            r = np.sqrt(X[:,0]**2+X[:,1]**2)
+        
+            f1 = X[:,0]
+            f2 = X[:,1]
+            f3 = 10*(np.exp(-r) / (1 + np.exp(-r))) * (0.3 + np.cos(2*r)**2)
+
+            out["F"] = np.column_stack([f1, f2, f3])
+            out["G"] = 0
 
 class MPL_GAA(Problem):
 
