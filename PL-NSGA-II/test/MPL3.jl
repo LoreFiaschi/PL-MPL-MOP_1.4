@@ -24,13 +24,9 @@ function print_iter(P, gen::Int=0)
 end
 
 function MPL3(filename)
-    
-    n = 2
 
     MaxIt = 500;  # Maximum Number of Iterations
     nPop = 100;    # Population Size [Number of Sub-Problems]
-
-    nObj = 3;
 
     EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = true);
     
@@ -41,15 +37,5 @@ function MPL3(filename)
     figure(4)
     clf();
     scatter3D(X, Y, Z, marker=:x);
-    
-	#=
-    open(filename, "w") do  file
-        println(file, length(EP))
-        println(file, n)
-        for x in EP
-            println(file, string(x.y[1][0], ';', x.y[2][0], ';', x.y[3][0]))
-            println(file, string(x.y[1][-1], ';', x.y[2][-1]))
-        end
-    end
-	=#
+
 end

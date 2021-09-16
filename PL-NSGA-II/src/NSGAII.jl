@@ -1,5 +1,5 @@
 __precompile__()
-module PLNSGAII_LAI
+module PLNSGAII
 
 export nsga, nsga_max, nsga_binary, BinaryCoding, dominates#, offspring, parents
 using ProgressMeter, Random
