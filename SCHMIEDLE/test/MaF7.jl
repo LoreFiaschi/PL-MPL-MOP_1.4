@@ -1,6 +1,6 @@
-include("../src/NSGAII.jl")
+include("../src/schmiedle.jl")
 
-using .PLNSGAII
+using .SCHMIEDLE
 using PyPlot
 
 const bc = BinaryCoding(5, [0.0, 0.0, 0.0], [1.0, 1.0, 20.0]);
@@ -24,9 +24,7 @@ f3_2(x) = f3_1(x);
 
 function CostFunction(x)
 
-	return [f1_1(x) f1_2(x);
-			f2_1(x) f2_2(x);
-			f3_1(x) f3_2(x)]
+	return [f1_1(x), f2_1(x), f3_1(x), f1_2(x), f2_2(x), f3_2(x)]
 end
 
 function print_iter(P, gen::Int=0)
@@ -38,9 +36,11 @@ function MaF7(filename)
     MaxIt = 600;  # Maximum Number of Iterations
     nPop = 200;    # Population Size [Number of Sub-Problems]
 
-    EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = true);
+	priorities = [3,3]
+
+    EP = schmiedle(nPop, Min(), priorities, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = true);
     
-	X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
+	X = map(x->x.y[1], EP)
     Y = map(x->x.y[2], EP)
     Z = map(x->x.y[3], EP)
     

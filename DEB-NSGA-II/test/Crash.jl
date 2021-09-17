@@ -1,6 +1,6 @@
 include("../src/NSGAII.jl")
 
-using .PLNSGAII
+using .DEB_PLNSGAII
 using PyPlot
 using DataFrames, CSV
 

@@ -38,7 +38,7 @@ end
 
 Base.:(==)(a::indiv, b::indiv) = a.x == b.x
 Base.hash(a::indiv) = hash(a.x)
-Base.isless(a::indiv, b::indiv) = a.rank < b.rank || (a.rank == b.rank && a.crowding >= b.crowding) #Comparison operator for tournament selection # >= is implicitly element-wise
+Base.isless(a::indiv, b::indiv) = a.rank < b.rank || (a.rank == b.rank && a.crowding >= b.crowding) #Comparison operator for tournament selection # >= is implicitly lexicographic under the natural ordering
 Base.show(io::IO, ind::indiv) = print(io, "indiv($(repr_pheno(ind.pheno)) : $(ind.y) | rank : $(ind.rank))")
 repr_pheno(x) = repr(x)
 function repr_pheno(x::Union{BitVector, Vector{Bool}})

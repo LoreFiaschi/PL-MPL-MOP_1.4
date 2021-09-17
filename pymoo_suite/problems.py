@@ -112,7 +112,7 @@ class MPL5(Problem):
         def _evaluate(self, X, out, *args, **kwargs):
         
             p = np.ones((np.size(X, axis=0), n_var))
-            p1 = p*4
+            p1 = p*5 #4
             p2 = p*[10, 6]
             p3 = p*[6,10]
     
@@ -292,4 +292,25 @@ class MaF7_std(Problem):
 		f3 = 3*(2+9/20*X[:,2])-X[:,0]*(1+np.sin(3*X[:,0]*pi))-X[:,1]*(1+np.sin(3*X[:,1]*pi))
 
 		out["F"] = np.column_stack([f1, f2, f3])
+		out["G"] = 0
+
+class debug_PL_B(Problem):
+
+	def __init__(self):
+		super().__init__(n_var=3,
+                         n_obj=3,
+                         n_constr=0,
+                         xl=np.zeros(3),
+                         xu=np.ones(3))
+
+	def _evaluate(self, X, out, *args, **kwargs):
+		
+		alpha = 2.5
+		beta = 10
+
+		f4 = np.cos(pi*X[:,0]/2)*np.cos(pi*X[:,1]/2)+beta*(X[:,0]**(alpha*X[:,2])-X[:,1])**2
+		f5 = np.cos(pi*X[:,0]/2)*np.sin(pi*X[:,1]/2)+beta*(X[:,0]**(alpha*X[:,2])-X[:,1])**2
+		f6 = np.sin(pi*X[:,0]/2)+beta*(X[:,0]**(alpha*X[:,2])-X[:,1])**2
+
+		out["F"] = np.column_stack([f4, f5, f6])
 		out["G"] = 0

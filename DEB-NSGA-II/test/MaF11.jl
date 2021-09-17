@@ -1,6 +1,6 @@
 include("../src/NSGAII.jl")
 
-using .PLNSGAII
+using .DEB_PLNSGAII
 using PyPlot
 
 const bc = BinaryCoding(5, zeros(12), [2*i for i=1:12]);

@@ -1,0 +1,3 @@
+PL_B different from the one in the paper. The front is not the expected one. To preemptively double check
+
+PL_C PL-NSGA-II does not find the upper point with p1=(4, 4) (DEB-PL-NSGA-II does)

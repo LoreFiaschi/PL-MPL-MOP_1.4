@@ -1,8 +1,7 @@
-include("../src/NSGAII.jl")
+include("../src/schmiedle.jl")
 
-using .PLNSGAII
+using .SCHMIEDLE
 using PyPlot
-using DataFrames, CSV
 
 const bc = BinaryCoding(5, [1.0, 1.0, 1.0, 1.0, 1.0], [3.0, 3.0, 3.0, 3.0, 3.0]);
 
@@ -24,9 +23,7 @@ f2_2(x) = -0.0551 + 0.0181*x[1] + 0.1024*x[2] + 0.0421*x[3] -
 
 function CostFunction(x)
 
-	return [f1_1(x) f1_2(x);
-			f2_1(x) f2_2(x)] 
-
+	return [f1_1(x), f2_1(x), f1_2(x), f2_2(x)]
 end
 
 function print_iter(P, gen::Int=0)
@@ -35,22 +32,17 @@ end
 
 function Crash(filename)
 
-    MaxIt = 600;  # Maximum Number of Iterations
-    nPop = 200;    # Population Size [Number of Sub-Problems]
+    MaxIt = 500;  # Maximum Number of Iterations
+    nPop = 100;    # Population Size [Number of Sub-Problems]
 
-    EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = true);
+    priorities = [2,2]
+
+    EP = schmiedle(nPop, Min(), priorities, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress=true);
     
-    X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
+    X = map(x->x.y[1], EP)
     Y = map(x->x.y[2], EP)
     
     scatter(X, Y, marker=:x);
-
-	xlabel(L"f^{(1)}_1");
-	ylabel(L"f^{(1)}_2");
-	
-#	df = DataFrame([map(x->x.y[1][0], EP) map(x->x.y[2][0], EP) map(x->x.y[2][-1], EP)])
-#	CSV.write(filename, df)
-
+   	
 	nothing
-	
 end

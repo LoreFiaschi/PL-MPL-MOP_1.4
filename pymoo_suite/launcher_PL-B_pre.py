@@ -4,7 +4,7 @@ from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.algorithms.moead import MOEAD
 from pymoo.factory import get_termination, get_reference_directions
 from pymoo.optimize import minimize
-from utils import postfiltering
+from utils import save_front
 import numpy as np
 from multiprocessing import Pool
 from math import pi
@@ -42,15 +42,9 @@ def optimize_nsga3(i):
     F8 = f8(res.F)
     F9 = f9(res.F)
 
-    num_ind = np.size(res.F, 0)
+	PF = np.hstack([res.F, F4, F5, F6, F7, F8, F9])
 
-    with open("../outputs/NSGAIII/PL-B_pre_"+str(i+1)+".txt", "w") as file:
-        file.write(str(num_ind)+"\n");
-        file.write(str(3)+"\n");
-        for j in range(0, num_ind):
-            file.write(str(res.F[j,0])+";"+str(res.F[j,1])+";"+str(res.F[j,2])+"\n");
-            file.write(str(F4[j])+";"+str(F5[j])+";"+str(F6[j])+"\n");
-            file.write(str(F7[j])+";"+str(F8[j])+";"+str(F9[j])+"\n");
+	save_front(PF, "../outputs/NSGA-III/PL-B_pre"+str(i+1)+".bin", [3,3,3])
 
 def optimize_moead(i):
 
@@ -77,15 +71,9 @@ def optimize_moead(i):
     F8 = f8(res.F)
     F9 = f9(res.F)
     
-    num_ind = np.size(res.F, 0)
+	PF = np.hstack([res.F, F4, F5, F6, F7, F8, F9])
 
-    with open("../outputs/MOEAD/PL-B_pre_"+str(i+1)+".txt", "w") as file:
-        file.write(str(num_ind)+"\n");
-        file.write(str(3)+"\n");
-        for j in range(0, num_ind):
-            file.write(str(res.F[j,0])+";"+str(res.F[j,1])+";"+str(res.F[j,2])+"\n");
-            file.write(str(F4[j])+";"+str(F5[j])+";"+str(F6[j])+"\n");
-            file.write(str(F7[j])+";"+str(F8[j])+";"+str(F9[j])+"\n");
+	save_front(PF, "../outputs/MOEAD/PL-B_pre"+str(i+1)+".bin", [3,3,3])
             
 def optimize_nsga2(i):
 
@@ -108,15 +96,9 @@ def optimize_nsga2(i):
     F8 = f8(res.F)
     F9 = f9(res.F)
 
-    num_ind = np.size(res.F, 0)
+	PF = np.hstack([res.F, F4, F5, F6, F7, F8, F9])
 
-    with open("../outputs/NSGAII/PL-B_pre_"+str(i+1)+".txt", "w") as file:
-        file.write(str(num_ind)+"\n");
-        file.write(str(3)+"\n");
-        for j in range(0, num_ind):
-            file.write(str(res.F[j,0])+";"+str(res.F[j,1])+";"+str(res.F[j,2])+"\n");
-            file.write(str(F4[j])+";"+str(F5[j])+";"+str(F6[j])+"\n");
-            file.write(str(F7[j])+";"+str(F8[j])+";"+str(F9[j])+"\n");
+	save_front(PF, "../outputs/NSGA-II/PL-B_pre"+str(i+1)+".bin", [3,3,3])
 
 
 

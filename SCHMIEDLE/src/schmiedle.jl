@@ -10,9 +10,6 @@ include("../../utils/mutation.jl")
 using LightGraphs, ProgressMeter, Random
 export schmiedle, BinaryCoding, Min, Max
 
-struct Min end
-struct Max end
-
 function schmiedle(popSize::Integer, sense, priorities::Vector{T}, max_it::Integer, 
 	z::Function, bc::BinaryCoding; fCV = x->0., pmut = 0.05, fmut = default_mutation!, 
 	fcross = default_crossover!, seed = Vector{Float64}[], fplot = x->nothing, plotevery = 1,
@@ -42,7 +39,7 @@ function _schmiedle(pop_size::Integer, sense, priorities::Vector{T}, max_it::Int
     end
     
 	num_priorities = length(priorities)
-    determine_favoring!(P, priorities, num_priorities)
+    determine_favoring!(P, priorities, num_priorities, sense)
 	sort!(P, by = x->x.fitness) # needed by tournament selection
     
 	@showprogress refreshtime for it=1:max_it
@@ -61,7 +58,7 @@ function _schmiedle(pop_size::Integer, sense, priorities::Vector{T}, max_it::Int
             eval!(P[pop_size+i+1], fdecode!, z, fCV)
         end
         
-        determine_favoring!(P, priorities, num_priorities)
+        determine_favoring!(P, priorities, num_priorities, sense)
 		sort!(P, by = x->x.fitness)
 
 		# Random selection of those exceeding the pop size

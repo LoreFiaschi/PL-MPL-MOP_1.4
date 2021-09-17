@@ -4,7 +4,7 @@ from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.algorithms.moead import MOEAD
 from pymoo.factory import get_termination, get_reference_directions
 from pymoo.optimize import minimize
-from utils import postfiltering
+from utils import postfiltering, save_front
 import numpy as np
 from multiprocessing import Pool
 
@@ -27,15 +27,7 @@ def optimize_nsga3(i):
 								[False, False, False, True, True, True, False, False, False],\
 								[False, False, False, False, False, False, True, True, True]])
 
-    num_ind = np.size(PF, 0)
-
-    with open("../outputs/NSGAIII/PL-B_"+str(i+1)+".txt", "w") as file:
-        file.write(str(num_ind)+"\n");
-        file.write(str(3)+"\n");
-        for j in range(0, num_ind):
-            file.write(str(PF[j,0])+";"+str(PF[j,1])+";"+str(PF[j,2])+"\n");
-            file.write(str(PF[j,3])+";"+str(PF[j,4])+";"+str(PF[j,5])+"\n");
-            file.write(str(PF[j,6])+";"+str(PF[j,7])+";"+str(PF[j,8])+"\n");
+   	save_front(PF, "../outputs/NSGA-III/PL-B_"+str(i+1)+".bin", [3,3,3])
 
 def optimize_moead(i):
 
@@ -59,15 +51,7 @@ def optimize_moead(i):
 								[False, False, False, True, True, True, False, False, False],\
 								[False, False, False, False, False, False, True, True, True]])
     
-    num_ind = np.size(PF, 0)
-
-    with open("../outputs/MOEAD/PL-B_"+str(i+1)+".txt", "w") as file:
-        file.write(str(num_ind)+"\n");
-        file.write(str(3)+"\n");
-        for j in range(0, num_ind):
-            file.write(str(PF[j,0])+";"+str(PF[j,1])+";"+str(PF[j,2])+"\n");
-            file.write(str(PF[j,3])+";"+str(PF[j,4])+";"+str(PF[j,5])+"\n");
-            file.write(str(PF[j,6])+";"+str(PF[j,7])+";"+str(PF[j,8])+"\n");
+   	save_front(PF, "../outputs/MOEAD/PL-B_"+str(i+1)+".bin", [3,3,3])
             
 def optimize_nsga2(i):
 
@@ -87,16 +71,7 @@ def optimize_nsga2(i):
 								[False, False, False, True, True, True, False, False, False],\
 								[False, False, False, False, False, False, True, True, True]])
 
-    num_ind = np.size(PF, 0)
-
-    with open("../outputs/NSGAII/PL-B_"+str(i+1)+".txt", "w") as file:
-        file.write(str(num_ind)+"\n");
-        file.write(str(3)+"\n");
-        for j in range(0, num_ind):
-            file.write(str(PF[j,0])+";"+str(PF[j,1])+";"+str(PF[j,2])+"\n");
-            file.write(str(PF[j,3])+";"+str(PF[j,4])+";"+str(PF[j,5])+"\n");
-            file.write(str(PF[j,6])+";"+str(PF[j,7])+";"+str(PF[j,8])+"\n");
-
+   	save_front(PF, "../outputs/NSGA-II/PL-B_"+str(i+1)+".bin", [3,3,3])
 
 
 if __name__ == '__main__':
