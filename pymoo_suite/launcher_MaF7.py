@@ -1,4 +1,4 @@
-from problems import MaF11
+from problems import MaF7
 from pymoo.algorithms.nsga3 import NSGA3
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.algorithms.moead import MOEAD
@@ -23,9 +23,9 @@ def optimize_nsga3(i):
                    save_history=False,
                    verbose=False)
                    
-    PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
+    PF = postfiltering(res.F, [[True, True, True, False, False, False],[False, False, False, True, True, True]])
 
-    save_front(PF, "../outputs/NSGA-III/MaF11_"+str(i+1)+".bin", [3,2])
+    save_front(PF, "../outputs/NSGA-III/MaF7_"+str(i+1)+".bin", [3,3])
 
 def optimize_moead(i):
 
@@ -45,9 +45,9 @@ def optimize_moead(i):
                    save_history=False,
                    verbose=False)
                    
-    PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
+    PF = postfiltering(res.F, [[True, True, True, False, False, False],[False, False, False, True, True, True]])
     
-    save_front(PF, "../outputs/MOEAD/MaF11_"+str(i+1)+".bin", [3,2])
+    save_front(PF, "../outputs/MOEAD/MaF7_"+str(i+1)+".bin", [3,3])
             
 def optimize_nsga2(i):
 
@@ -63,9 +63,9 @@ def optimize_nsga2(i):
                    save_history=False,
                    verbose=False)
                    
-    PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
+    PF = postfiltering(res.F, [[True, True, True, False, False, False],[False, False, False, True, True, True]])
 
-    save_front(PF, "../outputs/NSGA-II/MaF11_"+str(i+1)+".bin", [3,2])
+    save_front(PF, "../outputs/NSGA-II/MaF7_"+str(i+1)+".bin", [3,3])
 
 
 

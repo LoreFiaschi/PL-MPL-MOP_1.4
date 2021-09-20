@@ -1,8 +1,8 @@
 include("../src/NSGAII.jl")
+include("../../utils/io.jl")
 
 using .DEB_PLNSGAII
 using PyPlot
-using DataFrames, CSV
 
 const bc = BinaryCoding(5, [1.0, 1.0, 1.0, 1.0, 1.0], [3.0, 3.0, 3.0, 3.0, 3.0]);
 
@@ -33,23 +33,24 @@ function print_iter(P, gen::Int=0)
     println("[Iteration $gen: Number of solutions = $(length(P))]")
 end
 
-function Crash(filename)
+function Crash(filename; show_front=false)
 
     MaxIt = 600;  # Maximum Number of Iterations
     nPop = 200;    # Population Size [Number of Sub-Problems]
 
     EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = true);
     
-    X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
-    Y = map(x->x.y[2], EP)
-    
-    scatter(X, Y, marker=:x);
+	if show_front
+		X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
+		Y = map(x->x.y[2], EP)
+		
+		scatter(X, Y, marker=:x);
 
-	xlabel(L"f^{(1)}_1");
-	ylabel(L"f^{(1)}_2");
+		xlabel(L"f^{(1)}_1");
+		ylabel(L"f^{(1)}_2");
+	end
 	
-#	df = DataFrame([map(x->x.y[1][0], EP) map(x->x.y[2][0], EP) map(x->x.y[2][-1], EP)])
-#	CSV.write(filename, df)
+	save_front(EP, filename);
 
 	nothing
 	

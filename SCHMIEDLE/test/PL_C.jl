@@ -1,4 +1,5 @@
 include("../src/schmiedle.jl")
+include("../../utils/io.jl")
 
 using .SCHMIEDLE
 using PyPlot
@@ -33,7 +34,7 @@ function print_iter(P, gen::Int=0)
     println("[Iteration $gen: Number of solutions = $(length(P))]")
 end
 
-function PL_C(filename)
+function PL_C(filename; show_front=false)
     
     MaxIt = 500;  # Maximum Number of Iterations
     nPop = 100;    # Population Size [Number of Sub-Problems]
@@ -42,11 +43,15 @@ function PL_C(filename)
 
     EP = schmiedle(nPop, Min(), priorities, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress=false);
 
-	X = map(x->x.y[1], EP)
-    Y = map(x->x.y[2], EP)
-    Z = map(x->x.y[3], EP)
-    
-    scatter3D(X, Y, Z, marker=:x);
+	if show_front
+		X = map(x->x.y[1], EP)
+		Y = map(x->x.y[2], EP)
+		Z = map(x->x.y[3], EP)
+		
+		scatter3D(X, Y, Z, marker=:x);
+	end
+	
+	save_front(EP, filename);
 
 	nothing
 end

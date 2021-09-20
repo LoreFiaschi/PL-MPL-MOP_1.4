@@ -1,4 +1,5 @@
 include("../src/NSGAII.jl")
+include("../../utils/io.jl")
 
 using .DEB_PLNSGAII
 using PyPlot
@@ -35,18 +36,22 @@ function print_iter(P, gen::Int=0)
     println("[Iteration $gen: Number of solutions = $(length(P))]")
 end
 
-function PL_B(filename)
+function PL_B(filename; show_front=false)
 
     MaxIt = 500;  # Maximum Number of Iterations
     nPop = 100;    # Population Size [Number of Sub-Problems]
 
     EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = false);
     
-    X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
-    Y = map(x->x.y[2], EP)
-    Z = map(x->x.y[3], EP)
-    
-    scatter3D(X, Y, Z, marker=:x);
+    if show_front
+		X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
+		Y = map(x->x.y[2], EP)
+		Z = map(x->x.y[3], EP)
+		
+		scatter3D(X, Y, Z, marker=:x);
+	end
+	
+	save_front(EP, filename);
 
 	nothing
 end

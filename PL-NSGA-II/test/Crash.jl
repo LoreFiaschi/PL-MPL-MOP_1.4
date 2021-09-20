@@ -33,7 +33,7 @@ function print_iter(P, gen::Int=0)
     println("[Iteration $gen: Number of solutions = $(length(P))]")
 end
 
-function Crash(filename)
+function Crash(filename; show_front=false)
 
     MaxIt = 600;  # Maximum Number of Iterations
     nPop = 200;    # Population Size [Number of Sub-Problems]
