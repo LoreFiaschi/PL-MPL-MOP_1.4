@@ -27,6 +27,15 @@ function CostFunction(x)
 	return [f1_1(x), f2_1(x), f1_2(x), f2_2(x)]
 end
 
+function build_levels!(EP)
+	
+	for ind in EP
+		ind.y = [ind.y[1] ind.y[3];
+				 ind.y[2] ind.y[4]]
+	end
+
+end
+
 function print_iter(P, gen::Int=0)
     println("[Iteration $gen: Number of solutions = $(length(P))]")
 end
@@ -47,6 +56,8 @@ function Crash(filename; show_front=false)
 		scatter3D(X, Y, Z, marker=:x);
 	end
 	
+	build_levels!(EP)
+
 	save_front(EP, filename);
    	
 	nothing

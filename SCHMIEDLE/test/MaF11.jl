@@ -36,6 +36,16 @@ function CostFunction(x)
     return [f1_1, f2_1, f3_1, f1_2, f2_2]
 end
 
+function build_levels!(EP)
+	
+	for ind in EP
+		ind.y = [ind.y[1] ind.y[4];
+				 ind.y[2] ind.y[5];
+				 ind.y[3] 0]
+	end
+
+end
+
 
 function print_iter(P, gen::Int=0)
     println("[Iteration $gen: Number of solutions = $(length(P))]")
@@ -65,6 +75,8 @@ function MaF11(filename; show_front=false)
 		zlim((0, 6))
 	end
 	
+	build_levels!(EP)
+
 	save_front(EP, filename);
 
 	nothing

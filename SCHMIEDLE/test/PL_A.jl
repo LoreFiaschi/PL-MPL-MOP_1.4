@@ -25,6 +25,16 @@ function print_iter(P, gen::Int=0)
     println("[Iteration $gen: Number of solutions = $(length(P))]")
 end
 
+function build_levels!(EP)
+	
+	for ind in EP
+		ind.y = [ind.y[1] ind.y[4];
+				 ind.y[2] ind.y[5];
+				 ind.y[3] 0]
+	end
+
+end
+
 function PL_A(filename; show_front=false)
 
     MaxIt = 500;  # Maximum Number of Iterations
@@ -41,6 +51,8 @@ function PL_A(filename; show_front=false)
 		
 		scatter3D(X, Y, Z, marker=:x);
 	end
+
+	build_levels!(EP)
 	
 	save_front(EP, filename);
    	

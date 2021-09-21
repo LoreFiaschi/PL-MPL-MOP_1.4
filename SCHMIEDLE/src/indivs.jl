@@ -1,7 +1,7 @@
 mutable struct indiv{G, P, Y}
     x::G
     pheno::P
-    y::Y 
+    y#::Y (commented because we need to rebuild the cost as a function to save it in a file)
     CV::Float64
     fitness::Integer
     indiv(x::G, pheno::P, y::Y, CV) where {G,P,Y} =

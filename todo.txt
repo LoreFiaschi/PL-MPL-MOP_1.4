@@ -1,0 +1,5 @@
+Implement TAN in version 1-4+
+
+Implement Schmiedle in a matrix-compliant fashio for the cost function (which simplifies also the management of the priorities)
+
+Implement unique interface for each benchmark in julia
