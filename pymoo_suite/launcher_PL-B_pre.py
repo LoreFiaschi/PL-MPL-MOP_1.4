@@ -1,4 +1,4 @@
-from problems import MPL4_std
+from problems import PL_B_std
 from pymoo.algorithms.nsga3 import NSGA3
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.algorithms.moead import MOEAD
@@ -21,7 +21,7 @@ f8 = lambda X : np.cos(pi*4/3*(X[:,0]+X[:,2]))
 f9 = lambda X : 1/(1+0.3*(X[:,0]+X[:,2]-1)**2)-2/(1+1750*(X[:,0]+X[:,2]-1)**2)
 
 def optimize_nsga3(i):
-    problem = MPL4_std()
+    problem = PL_B_std()
 
     ref_dirs = get_reference_directions("das-dennis", 3, n_partitions=12)
     algorithm = NSGA3(ref_dirs = ref_dirs,
@@ -48,7 +48,7 @@ def optimize_nsga3(i):
 
 def optimize_moead(i):
 
-    problem = MPL4_std()
+    problem = PL_B_std()
 
     ref_dirs = get_reference_directions("das-dennis", 3, n_partitions=12)
     algorithm = MOEAD(ref_dirs = ref_dirs,
@@ -77,7 +77,7 @@ def optimize_moead(i):
             
 def optimize_nsga2(i):
 
-    problem = MPL4_std()
+    problem = PL_B_std()
 
     algorithm = NSGA2(pop_size = 100)
 

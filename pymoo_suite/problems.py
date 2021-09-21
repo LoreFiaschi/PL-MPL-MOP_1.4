@@ -3,7 +3,7 @@ from pymoo.model.problem import Problem
 from math import pi
 from utils import GAA_cost_function
 
-class MPL3(Problem):
+class PL_A(Problem):
 
 	def __init__(self):
 		super().__init__(n_var=3,
@@ -26,7 +26,7 @@ class MPL3(Problem):
 		out["G"] = 0
         
 
-class MPL3_std(Problem):
+class PL_A_std(Problem):
 
 	def __init__(self):
 		super().__init__(n_var=3,
@@ -47,7 +47,7 @@ class MPL3_std(Problem):
 		out["G"] = 0
 
 
-class MPL4(Problem):
+class PL_B(Problem):
 
     def __init__(self):
         super().__init__(n_var=3,
@@ -78,7 +78,7 @@ class MPL4(Problem):
         out["G"] = 0
 
 
-class MPL4_std(Problem):
+class PL_B_std(Problem):
 
     def __init__(self):
         super().__init__(n_var=3,
@@ -100,7 +100,7 @@ class MPL4_std(Problem):
         out["F"] = np.column_stack([f1, f2, f3])
         out["G"] = 0
 
-class MPL5(Problem):
+class PL_C(Problem):
 
         def __init__(self):
             super().__init__(n_var=2,
@@ -111,7 +111,7 @@ class MPL5(Problem):
         
         def _evaluate(self, X, out, *args, **kwargs):
         
-            p = np.ones((np.size(X, axis=0), n_var))
+            p = np.ones((np.size(X, axis=0), self.n_var))
             p1 = p*5 #4
             p2 = p*[10, 6]
             p3 = p*[6,10]
@@ -125,14 +125,14 @@ class MPL5(Problem):
             f4 =  np.cos(2*r)
             f5 = -np.sin(2*r)
             
-            f6 = numpy.linalg.norm(X-p1, axis=1)
-            f7 = numpy.linalg.norm(X-p2, axis=1)
-            f8 = numpy.linalg.norm(X-p3, axis=1)
+            f6 = np.linalg.norm(X-p1, axis=1)
+            f7 = np.linalg.norm(X-p2, axis=1)
+            f8 = np.linalg.norm(X-p3, axis=1)
 
             out["F"] = np.column_stack([f1, f2, f3, f4, f5, f6, f7, f8])
             out["G"] = 0
             
-class MPL5_std(Problem):
+class PL_C_std(Problem):
 
         def __init__(self):
             super().__init__(n_var=2,

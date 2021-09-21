@@ -1,20 +1,20 @@
 include("utils/io.jl")
-include("utils/delta_metric.jl")
-include("../utils/io_matrix.jl")
+include("utils/metrics.jl")
+include("../Utils/src/io_matrix.jl")
 include("../ArithmeticNonStandarNumbersLibrary/src/BAN.jl")
 
 using DataFrames, CSV, ProgressMeter, Statistics
-using .BAN
+using .BAN, .metrics
 
-num_trials = 50
+num_trials = 4
 
 alg_names = ["PL-NSGA-II", "DEB-NSGA-II", "NSGA-II", "MOEAD", "SCHMIEDLE"]
 dataframe_col_names = ["RUN","PLNSGAII", "DEBNSGAII", "NSGAII", "MOEAD", "SCHMIEDLE"]
 benchmark = "PL_C"
-minimize = true
+levels_size = [3,2,3]
 
 # Matrix for storing the performances of each trial and computing mean and std
-performance_matrix = Matrix{BAN}(undef, num_it, length(alg_names))
+performance_matrix = Matrix{Ban}(undef, num_trials, length(alg_names))
 
 # Vectors for performances mean and std
 stds = Vector{Ban}(undef, length(alg_names))
@@ -24,12 +24,13 @@ sources = [["outputs/$(alg_names[j])/$(benchmark)_$(i).bin" for j=1:length(alg_n
 destinations = ["performance/$(benchmark)/$(i).bin" for i=1:num_trials]
 
 for (i, (source, destination)) in enumerate(zip(sources, destinations))
-	performance = delta_metric(source, minimize)
+	populations = [load_front(filename) for filename in source]
+	performance = delta_metric(populations, levels_size, Min())
 	
 	# Write algorithms performance in a file
-	open(destination, "w") do io
-		write_matrix(io, performance)
-	end
+	#open(destination, "w") do io
+	#	write_matrix(io, performance)
+	#end
 
 	# Update the performances matrix
     performance_matrix[i,:] = deepcopy(performance)

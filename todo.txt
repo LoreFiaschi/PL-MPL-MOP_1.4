@@ -1,3 +1,6 @@
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
 Implement TAN in version 1-4+
 
 Implement Schmiedle in a matrix-compliant fashio for the cost function (which simplifies also the management of the priorities)

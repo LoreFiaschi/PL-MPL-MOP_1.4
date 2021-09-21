@@ -49,7 +49,7 @@ function MaF7(filename; show_front=false)
 
 	priorities = [3,3]
 
-    EP = schmiedle(nPop, Min(), priorities, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = true);
+    EP = schmiedle(nPop, Min(), priorities, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = false);
     
 	if show_front
 		X = map(x->x.y[1], EP)

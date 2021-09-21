@@ -1,4 +1,4 @@
-from problems import MPL3
+from problems import PL_A
 from pymoo.algorithms.nsga3 import NSGA3
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.algorithms.moead import MOEAD
@@ -9,7 +9,7 @@ import numpy as np
 from multiprocessing import Pool
 
 def optimize_nsga3(i):
-    problem = MPL3()
+    problem = PL_A()
 
     ref_dirs = get_reference_directions("das-dennis", 5, n_partitions=4)
     algorithm = NSGA3(ref_dirs = ref_dirs,
@@ -29,7 +29,7 @@ def optimize_nsga3(i):
 
 def optimize_moead(i):
 
-    problem = MPL3()
+    problem = PL_A()
 
     ref_dirs = get_reference_directions("das-dennis", 5, n_partitions=4)
     algorithm = MOEAD(ref_dirs = ref_dirs,
@@ -51,7 +51,7 @@ def optimize_moead(i):
             
 def optimize_nsga2(i):
 
-    problem = MPL3()
+    problem = PL_A()
 
     algorithm = NSGA2(pop_size = 100)
 

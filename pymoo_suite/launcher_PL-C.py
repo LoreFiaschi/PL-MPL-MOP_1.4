@@ -1,4 +1,4 @@
-from problems import MPL5
+from problems import PL_C
 from pymoo.algorithms.nsga3 import NSGA3
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.algorithms.moead import MOEAD
@@ -9,7 +9,7 @@ import numpy as np
 from multiprocessing import Pool
 
 def optimize_nsga3(i):
-    problem = MPL5()
+    problem = PL_C()
 
     ref_dirs = get_reference_directions("das-dennis", 8, n_partitions=3)
     algorithm = NSGA3(ref_dirs = ref_dirs,
@@ -27,11 +27,11 @@ def optimize_nsga3(i):
 								[False, False, False, True, True, False, False, False],\
 								[False, False, False, False, False, True, True, True]])
 
-    save_front(PF, "../outputs/NSGA-III/PL-C_"+str(i+1)+".bin", [3,2,3])
+    save_front(PF, "../outputs/NSGA-III/PL_C_"+str(i+1)+".bin", [3,2,3])
 
 def optimize_moead(i):
 
-    problem = MPL5()
+    problem = PL_C()
 
     ref_dirs = get_reference_directions("das-dennis", 8, n_partitions=3)
     algorithm = MOEAD(ref_dirs = ref_dirs,
@@ -51,11 +51,11 @@ def optimize_moead(i):
 								[False, False, False, True, True, False, False, False],\
 								[False, False, False, False, False, True, True, True]])
     
-    save_front(PF, "../outputs/MOEAD/PL-C_"+str(i+1)+".bin", [3,2,3])
+    save_front(PF, "../outputs/MOEAD/PL_C_"+str(i+1)+".bin", [3,2,3])
     
 def optimize_nsga2(i):
 
-    problem = MPL5()
+    problem = PL_C()
 
     algorithm = NSGA2(pop_size = 100)
 
@@ -71,14 +71,22 @@ def optimize_nsga2(i):
 								[False, False, False, True, True, False, False, False],\
 								[False, False, False, False, False, True, True, True]])
 
-    save_front(PF, "../outputs/NSGA-II/PL-C_"+str(i+1)+".bin", [3,2,3])
+    save_front(PF, "../outputs/NSGA-II/PL_C_"+str(i+1)+".bin", [3,2,3])
             
 if __name__ == '__main__':
-    with Pool(8) as p:
-        p.map(optimize_moead, range(50))
+#    with Pool(8) as p:
+#        p.map(optimize_moead, range(50))
+#
+#    with Pool(8) as p:
+#        p.map(optimize_nsga2, range(50))
+#
+#    with Pool(8) as p:
+#        p.map(optimize_nsga3, range(50))
+    with Pool(4) as p:
+        p.map(optimize_moead, range(4))
 
-    with Pool(8) as p:
-        p.map(optimize_nsga2, range(50))
+    with Pool(4) as p:
+        p.map(optimize_nsga2, range(4))
 
-    with Pool(8) as p:
-        p.map(optimize_nsga3, range(50))
+    with Pool(4) as p:
+        p.map(optimize_nsga3, range(4))

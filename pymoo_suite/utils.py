@@ -44,12 +44,12 @@ def save_front(front, filename, level_size):
 	pop_size = np.size(front, 0)
 	r = np.amax(level_size)
 	c = len(level_size)
-	num_zeros = 0
 	with open(filename, "wb") as io:
 		io.write(struct.pack("q", pop_size))
 		io.write(struct.pack("q", r))
 		io.write(struct.pack("q", c))
 		for p in range(0, pop_size):
+			num_zeros = 0
 			for i in range(0, r):
 				for j in range(0, c):
 					if i>=level_size[j]:

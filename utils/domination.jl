@@ -1,3 +1,6 @@
+struct Min end
+struct Max end
+
 function determine_domination!(pop, level_size::Vector{T}, minimize) where{T<:Integer}
 	for i=1:nPop
         pop[i].dominated=false
@@ -9,15 +12,15 @@ function determine_domination!(pop, level_size::Vector{T}, minimize) where{T<:In
 	for l in length(level_size)
 		for i=1:pop_size
 			for j=(i+1):pop_size
-				if dominates(tmp_pop[i].cost[:,l],tmp_pop[j].cost[:,l], minimize)
+				if !tmp_pop[j].dominated && dominates(tmp_pop[i].cost[:,l],tmp_pop[j].cost[:,l], minimize)
 					tmp_pop[j].dominated=true
-				elseif dominates(tmp_pop[j].cost[:,l],tmp_pop[i].cost[:,l], minimize)
+				elseif !tmp_pop[i].dominated && dominates(tmp_pop[j].cost[:,l],tmp_pop[i].cost[:,l], minimize)
 					tmp_pop[i].dominated=true   
 				end
 			end
-			tmp_pop = tmp_pop[map(x->x.dominated==false, tmp_pop)];
-			pop_size = length(tmp_pop);
 		end
+		tmp_pop = tmp_pop[map(x->x.dominated==false, tmp_pop)];
+		pop_size = length(tmp_pop);
 	end
 end
 
