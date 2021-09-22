@@ -44,7 +44,7 @@ end
 
 function MaF7(filename; show_front=false)
 
-    MaxIt = 600;  # Maximum Number of Iterations
+    MaxIt = 500;  # Maximum Number of Iterations
     nPop = 200;    # Population Size [Number of Sub-Problems]
 
 	priorities = [3,3]

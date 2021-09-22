@@ -35,10 +35,10 @@ end
 
 function Crash(filename; show_front=false)
 
-    MaxIt = 600;  # Maximum Number of Iterations
+    MaxIt = 500;  # Maximum Number of Iterations
     nPop = 200;    # Population Size [Number of Sub-Problems]
 
-    EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = true);
+    EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = false);
     
     X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
     Y = map(x->x.y[2], EP)

@@ -35,7 +35,7 @@ end
 
 function Crash(filename; show_front=false)
 
-    MaxIt = 600;  # Maximum Number of Iterations
+    MaxIt = 500;  # Maximum Number of Iterations
     nPop = 200;    # Population Size [Number of Sub-Problems]
 
     EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = false);

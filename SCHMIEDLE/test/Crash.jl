@@ -43,7 +43,7 @@ end
 function Crash(filename; show_front=false)
 
     MaxIt = 500;  # Maximum Number of Iterations
-    nPop = 100;    # Population Size [Number of Sub-Problems]
+    nPop = 200;    # Population Size [Number of Sub-Problems]
 
     priorities = [2,2]
 

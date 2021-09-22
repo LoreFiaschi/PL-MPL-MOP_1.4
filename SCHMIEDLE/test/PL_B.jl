@@ -47,7 +47,7 @@ end
 function PL_B(filename; show_front=false)
     
     MaxIt = 500;  # Maximum Number of Iterations
-    nPop = 100;    # Population Size [Number of Sub-Problems]
+    nPop = 200;    # Population Size [Number of Sub-Problems]
 
 	priorities = [3,3,3]
 

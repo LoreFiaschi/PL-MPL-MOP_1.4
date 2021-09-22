@@ -13,7 +13,7 @@ def optimize_nsga3(i):
 
     ref_dirs = get_reference_directions("das-dennis", 8, n_partitions=3)
     algorithm = NSGA3(ref_dirs = ref_dirs,
-                        pop_size = 180)
+                        pop_size = 200)
 
     termination = get_termination("n_gen", 500)
 
@@ -57,7 +57,7 @@ def optimize_nsga2(i):
 
     problem = PL_C()
 
-    algorithm = NSGA2(pop_size = 100)
+    algorithm = NSGA2(pop_size = 200)
 
     termination = get_termination("n_gen", 500)
 

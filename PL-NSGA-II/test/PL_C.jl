@@ -38,7 +38,7 @@ end
 function PL_C(filename; show_front=false)
 
     MaxIt = 500;  # Maximum Number of Iterations
-    nPop = 100;    # Population Size [Number of Sub-Problems]
+    nPop = 200;    # Population Size [Number of Sub-Problems]
 
     EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = false);
     
