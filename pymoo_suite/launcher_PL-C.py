@@ -74,19 +74,11 @@ def optimize_nsga2(i):
     save_front(PF, "../outputs/NSGA-II/PL_C_"+str(i+1)+".bin", [3,2,3])
             
 if __name__ == '__main__':
-#    with Pool(8) as p:
-#        p.map(optimize_moead, range(50))
-#
-#    with Pool(8) as p:
-#        p.map(optimize_nsga2, range(50))
-#
-#    with Pool(8) as p:
-#        p.map(optimize_nsga3, range(50))
-    with Pool(4) as p:
-        p.map(optimize_moead, range(4))
+    with Pool(8) as p:
+        p.map(optimize_moead, range(50))
 
-    with Pool(4) as p:
-        p.map(optimize_nsga2, range(4))
+    with Pool(8) as p:
+        p.map(optimize_nsga2, range(50))
 
-    with Pool(4) as p:
-        p.map(optimize_nsga3, range(4))
+    with Pool(8) as p:
+        p.map(optimize_nsga3, range(50))

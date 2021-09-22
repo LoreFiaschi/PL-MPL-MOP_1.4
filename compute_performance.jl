@@ -47,7 +47,7 @@ function compute_performance(benchmark, levels_size, num_trials, alg_names, data
 	end
 end
 
-num_trials = 4
+num_trials = 50
 benchmark = ["Crash", "MaF7", "MaF11", "PL_C"]
 levels_size = [[2,2], [3,3], [3,2], [3,2,3]]
 alg_names = ["PL-NSGA-II", "DEB-NSGA-II", "NSGA-II", "NSGA-III", "MOEAD", "SCHMIEDLE"]

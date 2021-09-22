@@ -32,7 +32,7 @@ def optimize_nsga3(i):
 
 	PF = np.hstack([res.F, F4, F5])
 
-	save_front(PF, "../outputs/NSGA-III/PL-A_pre"+str(i+1)+".bin", [3,2])
+	save_front(PF, "../outputs/NSGA-III/PL_A_pre_"+str(i+1)+".bin", [3,2])
 
 def optimize_moead(i):
 
@@ -57,7 +57,7 @@ def optimize_moead(i):
     
 	PF = np.hstack([res.F, F4, F5])
 
-	save_front(PF, "../outputs/MOEAD/PL-A_pre"+str(i+1)+".bin", [3,2])
+	save_front(PF, "../outputs/MOEAD/PL_A_pre_"+str(i+1)+".bin", [3,2])
             
 def optimize_nsga2(i):
 
@@ -78,7 +78,7 @@ def optimize_nsga2(i):
 
 	PF = np.hstack([res.F, F4, F5])
 
-	save_front(PF, "../outputs/NSGA-II/PL-A_pre"+str(i+1)+".bin", [3,2])
+	save_front(PF, "../outputs/NSGA-II/PL_A_pre_"+str(i+1)+".bin", [3,2])
 
 
 
