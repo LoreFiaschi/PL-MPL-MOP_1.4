@@ -8,8 +8,10 @@ include("domination.jl")
 #include("definitions.jl")
 
 using .BAN
+
 export delta_metric
 export Min, Max
+export Ban, standard_part
 
 mutable struct Individual
 
@@ -29,6 +31,7 @@ function preprocess!(pop_array::Vector{Vector{Matrix{T}}}, level_size::Vector{S}
             newpop_array[i][j] = Individual(pop_array[i][j], false, i)
         end
     end
+
 	whole_pop = convert(Array{Individual, 1}, []) # no ways to improve it? 
     for i in eachindex(newpop_array)
         whole_pop = [whole_pop ; newpop_array[i]]
@@ -36,11 +39,12 @@ function preprocess!(pop_array::Vector{Vector{Matrix{T}}}, level_size::Vector{S}
 	# Normaliztion
 	for i=1:length(level_size)
 		for j=1:level_size[i]
-			M = maximum(map(x->x.cost[i,j], whole_pop))
-			m = minimum(map(x->x.cost[i,j], whole_pop))
+			M = maximum(map(x->x.cost[j,i], whole_pop))
+			m = minimum(map(x->x.cost[j,i], whole_pop))
 			width = M-m;
+			width == 0 && @warn "width equal to zero at level $(i) objective $(j). M=$(M), m=$(m)"
 			for h in eachindex(whole_pop)
-				whole_pop[h].cost[i,j] /= width;
+				whole_pop[h].cost[j,i] /= width;
 			end
 		end
 	end
@@ -62,9 +66,14 @@ function _compute_distance(diff::Matrix{T}, ishibuchi::Bool=false) where{T<:Real
 	num_levels = size(diff,2)
 	d = Vector{T}(undef, num_levels)
 	for i=1:num_levels
-		d[i] = dot(diff[:,i],diff[:,i])
+		d[i] = diff[:,i]'*diff[:,i]
 	end
-    return Ban(0,d)
+	power = 0
+	while d[1]==0 && !all(x->x==0, d) #guarantee Ban normal form (up to now library rises an exception)
+		d = [d[2:end]; 0]
+		power -= 1
+	end
+    return Ban(power,d)
 end
 
 function compute_GD_performance(pop::Vector{Individual}, true_pareto::Vector{Individual}, sense, ishibuchi::Bool=false)

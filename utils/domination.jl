@@ -2,7 +2,7 @@ struct Min end
 struct Max end
 
 function determine_domination!(pop, level_size::Vector{T}, minimize) where{T<:Integer}
-	for i=1:nPop
+	for i=1:length(pop)
         pop[i].dominated=false
     end
 
@@ -24,12 +24,12 @@ function determine_domination!(pop, level_size::Vector{T}, minimize) where{T<:In
 	end
 end
 
-function dominates(cost1::Matrix{T}, cost2::Matrix{T}, ::Min) where{T<:Real}
+function dominates(cost1::Vector{T}, cost2::Vector{T}, ::Min) where{T<:Real}
 	diff = cost1-cost2
 	return (all(x->x<=0, diff) && any(x->x<0, diff))
 end
 
-function dominates(cost1::Matrix{T}, cost2::Matrix{T}, ::Max) where{T<:Real}
+function dominates(cost1::Vector{T}, cost2::Vector{T}, ::Max) where{T<:Real}
 	diff = cost1-cost2
 	return (all(x->x>=0, diff) && any(x->x>0, diff))
 end
