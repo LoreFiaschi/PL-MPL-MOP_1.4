@@ -1,9 +1,10 @@
 from problems import PL_A
-from pymoo.algorithms.nsga3 import NSGA3
-from pymoo.algorithms.nsga2 import NSGA2
-from pymoo.algorithms.moead import MOEAD
+from pymoo.algorithms.moo.nsga3 import NSGA3
+from pymoo.algorithms.moo.nsga2 import NSGA2
+from pymoo.algorithms.moo.moead import MOEAD
 from pymoo.factory import get_termination, get_reference_directions
 from pymoo.optimize import minimize
+from pymoo.decomposition.pbi import PBI
 from utils import postfiltering, save_front
 import numpy as np
 from multiprocessing import Pool
@@ -34,7 +35,7 @@ def optimize_moead(i):
     ref_dirs = get_reference_directions("das-dennis", 5, n_partitions=4)
     algorithm = MOEAD(ref_dirs = ref_dirs,
                         n_neighbors = 15,
-						decomposition="pbi",
+						decomposition=PBI(),
 						prob_neighbor_mating=0.7)
 
     termination = get_termination("n_gen", 500)

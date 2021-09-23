@@ -1,9 +1,10 @@
 from problems import PL_A_std
-from pymoo.algorithms.nsga3 import NSGA3
-from pymoo.algorithms.nsga2 import NSGA2
-from pymoo.algorithms.moead import MOEAD
+from pymoo.algorithms.moo.nsga3 import NSGA3
+from pymoo.algorithms.moo.nsga2 import NSGA2
+from pymoo.algorithms.moo.moead import MOEAD
 from pymoo.factory import get_termination, get_reference_directions
 from pymoo.optimize import minimize
+from pymoo.decomposition.pbi import PBI
 from utils import save_front
 import numpy as np
 from multiprocessing import Pool
@@ -30,7 +31,7 @@ def optimize_nsga3(i):
     F4 = f4(res.F)
     F5 = f5(res.F)
 
-	PF = np.hstack([res.F, F4, F5])
+	PF = np.column_stack([res.F, F4, F5])
 
 	save_front(PF, "../outputs/NSGA-III/PL_A_pre_"+str(i+1)+".bin", [3,2])
 
@@ -41,7 +42,7 @@ def optimize_moead(i):
     ref_dirs = get_reference_directions("das-dennis", 3, n_partitions=12)
     algorithm = MOEAD(ref_dirs = ref_dirs,
                         n_neighbors = 15,
-						decomposition="pbi",
+						decomposition=PBI(),
 						prob_neighbor_mating=0.7)
 
     termination = get_termination("n_gen", 500)
@@ -55,7 +56,7 @@ def optimize_moead(i):
     F4 = f4(res.F)
     F5 = f5(res.F)
     
-	PF = np.hstack([res.F, F4, F5])
+	PF = np.column_stack([res.F, F4, F5])
 
 	save_front(PF, "../outputs/MOEAD/PL_A_pre_"+str(i+1)+".bin", [3,2])
             
@@ -76,7 +77,7 @@ def optimize_nsga2(i):
     F4 = f4(res.F)
     F5 = f5(res.F)
 
-	PF = np.hstack([res.F, F4, F5])
+	PF = np.column_stack([res.F, F4, F5])
 
 	save_front(PF, "../outputs/NSGA-II/PL_A_pre_"+str(i+1)+".bin", [3,2])
 
