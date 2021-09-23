@@ -45,7 +45,7 @@ end
 
 function MaF11(filename; show_front=false)
 
-    MaxIt = 2500;  # Maximum Number of Iterations
+    MaxIt = 1000;  # Maximum Number of Iterations
     nPop = 200;    # Population Size [Number of Sub-Problems]
 
     EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = false);

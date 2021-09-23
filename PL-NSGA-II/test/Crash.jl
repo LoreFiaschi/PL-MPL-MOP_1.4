@@ -1,8 +1,8 @@
 include("../src/NSGAII.jl")
+include("../../utils/io.jl")
 
 using .PLNSGAII
 using PyPlot
-using DataFrames, CSV
 
 const bc = BinaryCoding(5, [1.0, 1.0, 1.0, 1.0, 1.0], [3.0, 3.0, 3.0, 3.0, 3.0]);
 
@@ -39,17 +39,18 @@ function Crash(filename; show_front=false)
     nPop = 200;    # Population Size [Number of Sub-Problems]
 
     EP = nsga(nPop, MaxIt, CostFunction, bc, fplot=print_iter, plotevery=1000, showprogress = false);
-    
-    X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
-    Y = map(x->x.y[2], EP)
-    
-    scatter(X, Y, marker=:x);
 
-	xlabel(L"f^{(1)}_1");
-	ylabel(L"f^{(1)}_2");
-	
-#	df = DataFrame([map(x->x.y[1][0], EP) map(x->x.y[2][0], EP) map(x->x.y[2][-1], EP)])
-#	CSV.write(filename, df)
+	if show_front
+		X = map(x->x.y[1], EP) # equivalent to x.y[1,1]
+		Y = map(x->x.y[2], EP)
+		
+		scatter(X, Y, marker=:x);
+
+		xlabel(L"f^{(1)}_1");
+		ylabel(L"f^{(1)}_2");;
+	end
+    
+	save_front(EP, filename);
 
 	nothing
 	

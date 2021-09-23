@@ -15,7 +15,7 @@ def optimize_nsga3(i):
     algorithm = NSGA3(ref_dirs = ref_dirs,
                         pop_size = 200)
 
-    termination = get_termination("n_gen", 2500)
+    termination = get_termination("n_gen", 1000)
 
     res = minimize(problem,
                    algorithm,
@@ -37,7 +37,7 @@ def optimize_moead(i):
 						decomposition="pbi",
 						prob_neighbor_mating=0.7)
 
-    termination = get_termination("n_gen", 2500)
+    termination = get_termination("n_gen", 1000)
     
     res = minimize(problem,
                    algorithm,
@@ -55,7 +55,7 @@ def optimize_nsga2(i):
 
     algorithm = NSGA2(pop_size = 200)
 
-    termination = get_termination("n_gen", 2500)
+    termination = get_termination("n_gen", 1000)
 
     res = minimize(problem,
                    algorithm,
