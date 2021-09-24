@@ -1,0 +1,20 @@
+\begin{table}[!ht]
+\centering
+\caption{Performance ($\Delta(\cdot) = \max\{IGD(\cdot), GD(\cdot)\}$) on Crash}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Algorithm & Mean & Std & Number of Solutions\\
+		\hline
+		PL-NSGA-II & $2.98e\um5\alpha^0 + 6.01e\um5\alpha^-1$ & $2.38e\um5\alpha^0 + 4.79e\um5\alpha^-1$ & $200.0$ \\
+		\hline
+		NSGA-II & $0.002\alpha^0 + 0.003\alpha^-1$ & $0.001\alpha^0 + 0.002\alpha^-1$ & $14.24$ \\
+		\hline
+		MOEAD & $0.002\alpha^0 + 0.003\alpha^-1$ & $0.001\alpha^0 + 0.001\alpha^-1$ & $8.68$ \\
+		\hline
+		NSGA-III & $0.154\alpha^0 + 0.264\alpha^-1$ & $0.041\alpha^0 + 0.058\alpha^-1$ & $163.84$ \\
+		\hline
+		SCHMIEDLE & $0.184\alpha^0 + 0.152\alpha^-1$ & $0.044\alpha^0 + 0.036\alpha^-1$ & $200.0$ \\
+		\hline
+	\end{tabular}
+	\label{tab:Crash_performance}
+\end{table}

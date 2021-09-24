@@ -1,0 +1,20 @@
+\begin{table}[!ht]
+\centering
+\caption{Performance ($\Delta(\cdot) = \max\{IGD(\cdot), GD(\cdot)\}$) on MaF7}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Algorithm & Mean & Std & Number of Solutions\\
+		\hline
+		PL-NSGA-II & $0.063\alpha^0 + 0.4\alpha^-1$ & $0.005\alpha^0 + 0.011\alpha^-1$ & $200.0$ \\
+		\hline
+		NSGA-II & $0.096\alpha^0 + 0.648\alpha^-1$ & $0.006\alpha^0 + 0.015\alpha^-1$ & $8.68$ \\
+		\hline
+		MOEAD & $0.248\alpha^0 + 0.617\alpha^-1$ & $0.037\alpha^0 - -0.063\alpha^-1$ & $3.46$ \\
+		\hline
+		NSGA-III & $0.094\alpha^0 + 0.644\alpha^-1$ & $0.006\alpha^0 + 0.016\alpha^-1$ & $174.02$ \\
+		\hline
+		SCHMIEDLE & $0.29\alpha^0 + 0.257\alpha^-1$ & $0.098\alpha^0 + 0.118\alpha^-1$ & $200.0$ \\
+		\hline
+	\end{tabular}
+	\label{tab:MaF7_performance}
+\end{table}

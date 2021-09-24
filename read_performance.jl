@@ -10,6 +10,7 @@ function show_performance(benchmark)
 		println("")
 		println("Stds:")
 		println(P[:,2])
+		println("")
 	end
 	open("performance/$(benchmark)/num_solutions.bin", "r") do io
 		s = read_matrix(io, Float64, 1)

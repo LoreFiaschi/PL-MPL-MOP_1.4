@@ -1,0 +1,20 @@
+\begin{table}[!ht]
+\centering
+\caption{Performance ($\Delta(\cdot) = \max\{IGD(\cdot), GD(\cdot)\}$) on PL_C}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Algorithm & Mean & Std & Number of Solutions\\
+		\hline
+		PL-NSGA-II & $0.153\alpha^0 + 0.167\alpha^-1 + 0.045\alpha^-2$ & $0.024\alpha^0 - -0.002\alpha^-1 + 0.026\alpha^-2$ & $200.0$ \\
+		\hline
+		NSGA-II & $0.453\alpha^0 + 0.394\alpha^-1 + 0.221\alpha^-2$ & $0.047\alpha^0 + 0.092\alpha^-1 + 0.057\alpha^-2$ & $10.68$ \\
+		\hline
+		MOEAD & $0.458\alpha^0 + 0.328\alpha^-1 + 0.247\alpha^-2$ & $0.024\alpha^0 + 0.023\alpha^-1 + 0.035\alpha^-2$ & $3.34$ \\
+		\hline
+		NSGA-III & $0.483\alpha^0 + 0.415\alpha^-1 + 0.218\alpha^-2$ & $0.027\alpha^0 + 0.041\alpha^-1 + 0.048\alpha^-2$ & $17.22$ \\
+		\hline
+		SCHMIEDLE & $0.182\alpha^0 + 0.362\alpha^-1 + 0.425\alpha^-2$ & $0.053\alpha^0 + 0.055\alpha^-1 + 0.177\alpha^-2$ & $200.0$ \\
+		\hline
+	\end{tabular}
+	\label{tab:PL_C_performance}
+\end{table}
