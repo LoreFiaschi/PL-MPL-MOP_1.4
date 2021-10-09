@@ -25,8 +25,10 @@ def optimize_nsga3(i):
 		           verbose=False)
 
 	PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, True, True, True]])
+	
+	PF = np.column_stack([PF, PF[:,2]])	
 
-	PF = np.column_stack([PF, PF[:,2]])
+	PF = PF[:, [0,3,1,4,2,5]]
 
 	save_front(PF, "../outputs/NSGA-III/MaF7_"+str(i+1)+".bin", [3,3])
 
@@ -52,6 +54,8 @@ def optimize_moead(i):
 
 	PF = np.column_stack([PF, PF[:,2]])
 
+	PF = PF[:, [0,3,1,4,2,5]]
+
 	save_front(PF, "../outputs/MOEAD/MaF7_"+str(i+1)+".bin", [3,3])
 		    
 def optimize_nsga2(i):
@@ -71,6 +75,8 @@ def optimize_nsga2(i):
 	PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, True, True, True]])
 
 	PF = np.column_stack([PF, PF[:,2]])
+
+	PF = PF[:, [0,3,1,4,2,5]]
 
 	save_front(PF, "../outputs/NSGA-II/MaF7_"+str(i+1)+".bin", [3,3])
 

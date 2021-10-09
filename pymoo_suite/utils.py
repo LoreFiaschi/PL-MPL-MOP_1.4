@@ -42,8 +42,8 @@ def postfiltering(pop, masks, sense=True):
 
 def save_front(front, filename, level_size):
 	pop_size = np.size(front, 0)
-	r = np.amax(level_size)
-	c = len(level_size)
+	r = np.amax(level_size) # num obj per PL
+	c = len(level_size) # num PLs
 	with open(filename, "wb") as io:
 		io.write(struct.pack("q", pop_size))
 		io.write(struct.pack("q", r))

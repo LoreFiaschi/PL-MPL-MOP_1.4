@@ -10,63 +10,69 @@ import numpy as np
 from multiprocessing import Pool
 
 def optimize_nsga3(i):
-    problem = MaF11()
+	problem = MaF11()
 
-    ref_dirs = get_reference_directions("das-dennis", 5, n_partitions=6)
-    algorithm = NSGA3(ref_dirs = ref_dirs,
-                        pop_size = 210)
+	ref_dirs = get_reference_directions("das-dennis", 5, n_partitions=6)
+	algorithm = NSGA3(ref_dirs = ref_dirs,
+		                pop_size = 210)
 
-    termination = get_termination("n_gen", 1000)
+	termination = get_termination("n_gen", 1000)
 
-    res = minimize(problem,
-                   algorithm,
-                   termination,
-                   save_history=False,
-                   verbose=False)
-                   
-    PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
+	res = minimize(problem,
+		           algorithm,
+		           termination,
+		           save_history=False,
+		           verbose=False)
+		           
+	PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
 
-    save_front(PF, "../outputs/NSGA-III/MaF11_"+str(i+1)+".bin", [3,2])
+	PF = PF[:, [0,3,1,4,2]]
+
+	save_front(PF, "../outputs/NSGA-III/MaF11_"+str(i+1)+".bin", [3,2])
 
 def optimize_moead(i):
 
-    problem = MaF11()
+	problem = MaF11()
 
-    ref_dirs = get_reference_directions("das-dennis", 5, n_partitions=6)
-    algorithm = MOEAD(ref_dirs = ref_dirs,
-                        n_neighbors = 15,
+	ref_dirs = get_reference_directions("das-dennis", 5, n_partitions=6)
+	algorithm = MOEAD(ref_dirs = ref_dirs,
+		                n_neighbors = 15,
 						decomposition=PBI(),
 						prob_neighbor_mating=0.7)
 
-    termination = get_termination("n_gen", 1000)
-    
-    res = minimize(problem,
-                   algorithm,
-                   termination,
-                   save_history=False,
-                   verbose=False)
-                   
-    PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
-    
-    save_front(PF, "../outputs/MOEAD/MaF11_"+str(i+1)+".bin", [3,2])
+	termination = get_termination("n_gen", 1000)
+
+	res = minimize(problem,
+		           algorithm,
+		           termination,
+		           save_history=False,
+		           verbose=False)
+		           
+	PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
+
+	PF = PF[:, [0,3,1,4,2]]
+
+	save_front(PF, "../outputs/MOEAD/MaF11_"+str(i+1)+".bin", [3,2])
             
 def optimize_nsga2(i):
 
-    problem = MaF11()
+	problem = MaF11()
 
-    algorithm = NSGA2(pop_size = 200)
+	algorithm = NSGA2(pop_size = 200)
 
-    termination = get_termination("n_gen", 1000)
+	termination = get_termination("n_gen", 1000)
 
-    res = minimize(problem,
-                   algorithm,
-                   termination,
-                   save_history=False,
-                   verbose=False)
-                   
-    PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
+	res = minimize(problem,
+		           algorithm,
+		           termination,
+		           save_history=False,
+		           verbose=False)
+		           
+	PF = postfiltering(res.F, [[True, True, True, False, False],[False, False, False, True, True]])
 
-    save_front(PF, "../outputs/NSGA-II/MaF11_"+str(i+1)+".bin", [3,2])
+	PF = PF[:, [0,3,1,4,2]]
+
+	save_front(PF, "../outputs/NSGA-II/MaF11_"+str(i+1)+".bin", [3,2])
 
 
 

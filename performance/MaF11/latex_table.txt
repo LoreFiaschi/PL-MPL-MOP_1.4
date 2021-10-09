@@ -3,17 +3,17 @@
 \caption{Performance ($\Delta(\cdot) = \max\{IGD(\cdot), GD(\cdot)\}$) on MaF11}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		Algorithm & Mean & Std & Number of Solutions\\
+		\textbf{Algorithm} & \textbf{Mean} & \textbf{Std} & \textbf{Number of Solutions}\\
 		\hline
-		PL-NSGA-II & $1.00e\um6\alpha^0 + 1.31e\um7\alpha^-1$ & $2.96e\um6\alpha^0 + 4.02e\um7\alpha^-1$ & $200.0$ \\
+		PL-NSGA-II & $0.0\alpha^{0} + 0.0\alpha^{-1}$ & $0.0\alpha^{0} + 0.0\alpha^{-1}$ & $200.0$ \\
 		\hline
-		NSGA-II & $0.484\alpha^0 + 0.142\alpha^-1$ & $0.434\alpha^0 - -0.04\alpha^-1$ & $4.26$ \\
+		NSGA-II & $0.485\alpha^{0} + 0.087\alpha^{-1}$ & $0.116\alpha^{0} + 0.004\alpha^{-1}$ & $1.98$ \\
 		\hline
-		MOEAD & $0.973\alpha^0 + 0.086\alpha^-1$ & $0.4\alpha^0 - -0.008\alpha^-1$ & $1.48$ \\
+		NSGA-III & $0.526\alpha^{0} + 0.084\alpha^{-1}$ & $0.101\alpha^{0} + 0.006\alpha^{-1}$ & $1.0$ \\
 		\hline
-		NSGA-III & $0.112\alpha^0 + 0.096\alpha^-1$ & $0.057\alpha^0 - -0.005\alpha^-1$ & $8.48$ \\
+		MOEAD & $0.078\alpha^{0} + 0.095\alpha^{-1}$ & $0.044\alpha^{0}-0.006\alpha^{-1}$ & $6.76$ \\
 		\hline
-		SCHMIEDLE & $0.494\alpha^0 + 0.021\alpha^-1$ & $0.103\alpha^0 + 0.004\alpha^-1$ & $200.0$ \\
+		SCHMIEDLE & $0.524\alpha^{0} + 0.022\alpha^{-1}$ & $0.109\alpha^{0} + 0.004\alpha^{-1}$ & $200.0$ \\
 		\hline
 	\end{tabular}
 	\label{tab:MaF11_performance}

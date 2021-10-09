@@ -3,17 +3,17 @@
 \caption{Performance ($\Delta(\cdot) = \max\{IGD(\cdot), GD(\cdot)\}$) on PL_C}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		Algorithm & Mean & Std & Number of Solutions\\
+		\textbf{Algorithm} & \textbf{Mean} & \textbf{Std} & \textbf{Number of Solutions}\\
 		\hline
-		PL-NSGA-II & $0.153\alpha^0 + 0.167\alpha^-1 + 0.045\alpha^-2$ & $0.024\alpha^0 - -0.002\alpha^-1 + 0.026\alpha^-2$ & $200.0$ \\
+		PL-NSGA-II & $0.002\alpha^{0} + 0.1\alpha^{-1} + 0.004\alpha^{-2}$ & $0.001\alpha^{0} + 0.028\alpha^{-1} + 0.158\alpha^{-2}$ & $200.0$ \\
 		\hline
-		NSGA-II & $0.453\alpha^0 + 0.394\alpha^-1 + 0.221\alpha^-2$ & $0.047\alpha^0 + 0.092\alpha^-1 + 0.057\alpha^-2$ & $10.68$ \\
+		NSGA-II & $0.006\alpha^{0} + 0.133\alpha^{-1} + 0.01\alpha^{-2}$ & $0.002\alpha^{0} + 0.003\alpha^{-1} + 0.162\alpha^{-2}$ & $10.7$ \\
 		\hline
-		MOEAD & $0.458\alpha^0 + 0.328\alpha^-1 + 0.247\alpha^-2$ & $0.024\alpha^0 + 0.023\alpha^-1 + 0.035\alpha^-2$ & $3.34$ \\
+		NSGA-III & $0.017\alpha^{0} + 0.186\alpha^{-1} + 0.029\alpha^{-2}$ & $0.001\alpha^{0} + 0.01\alpha^{-1} + 0.274\alpha^{-2}$ & $3.18$ \\
 		\hline
-		NSGA-III & $0.483\alpha^0 + 0.415\alpha^-1 + 0.218\alpha^-2$ & $0.027\alpha^0 + 0.041\alpha^-1 + 0.048\alpha^-2$ & $17.22$ \\
+		MOEAD & $0.006\alpha^{0} + 0.149\alpha^{-1} + 0.009\alpha^{-2}$ & $0.001\alpha^{0} + 0.022\alpha^{-1} + 0.104\alpha^{-2}$ & $16.84$ \\
 		\hline
-		SCHMIEDLE & $0.182\alpha^0 + 0.362\alpha^-1 + 0.425\alpha^-2$ & $0.053\alpha^0 + 0.055\alpha^-1 + 0.177\alpha^-2$ & $200.0$ \\
+		SCHMIEDLE & $0.121\alpha^{0} + 0.356\alpha^{-1} + 0.273\alpha^{-2}$ & $0.036\alpha^{0} + 0.028\alpha^{-1} + 0.121\alpha^{-2}$ & $200.0$ \\
 		\hline
 	\end{tabular}
 	\label{tab:PL_C_performance}

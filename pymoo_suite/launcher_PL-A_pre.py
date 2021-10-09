@@ -28,8 +28,8 @@ def optimize_nsga3(i):
                    save_history=False,
                    verbose=False)
                    
-    F4 = f4(res.F)
-    F5 = f5(res.F)
+    F4 = f4(res.X)
+    F5 = f5(res.X)
 
 	PF = np.column_stack([res.F, F4, F5])
 
@@ -53,8 +53,8 @@ def optimize_moead(i):
                    save_history=False,
                    verbose=False)
                    
-    F4 = f4(res.F)
-    F5 = f5(res.F)
+    F4 = f4(res.X)
+    F5 = f5(res.X)
     
 	PF = np.column_stack([res.F, F4, F5])
 
@@ -74,8 +74,8 @@ def optimize_nsga2(i):
                    save_history=False,
                    verbose=False)
                    
-    F4 = f4(res.F)
-    F5 = f5(res.F)
+    F4 = f4(res.X)
+    F5 = f5(res.X)
 
 	PF = np.column_stack([res.F, F4, F5])
 

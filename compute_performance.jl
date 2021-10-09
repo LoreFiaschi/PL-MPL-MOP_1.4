@@ -59,7 +59,7 @@ end
 num_trials = 50
 alg_names = ["PL-NSGA-II", "NSGA-II", "NSGA-III", "MOEAD", "SCHMIEDLE"]
 dataframe_col_names = ["RUN","PLNSGAII", "NSGAII", "NSGA-III", "MOEAD", "SCHMIEDLE"]
-#=
+
 benchmark = ["Crash", "MaF7", "MaF11"]
 levels_size = [[2,2], [3,3], [3,2]]
 #benchmark = ["Crash", "MaF7", "MaF11", "PL_C"]
@@ -71,8 +71,8 @@ for (b, l) in zip(benchmark, levels_size)
 end
 
 pmap(compute_performance, input)
-=#
 
-compute_performance(["PL_C", [3,2,3], num_trials, alg_names, dataframe_col_names])
+
+#compute_performance(["PL_C", [3,2,3], num_trials, alg_names, dataframe_col_names])
 
 nothing

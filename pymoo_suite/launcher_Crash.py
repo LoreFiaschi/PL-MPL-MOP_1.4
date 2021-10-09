@@ -26,7 +26,7 @@ def optimize_nsga3(i):
 		           
 	PF = postfiltering(res.F, [[True, True, False],[False, True, True]])
 
-	PF = np.column_stack([PF[:,0], PF[:,1], PF[:,1], PF[:,2]])
+	PF = np.column_stack([PF[:,0], PF[:,1], PF[:,1], PF[:,2]]) #No need of reordering
 
 	save_front(PF, "../outputs/NSGA-III/Crash_"+str(i+1)+".bin", [2,2])
 
@@ -50,7 +50,7 @@ def optimize_moead(i):
 		           
 	PF = postfiltering(res.F, [[True, True, False],[False, True, True]])
 
-	PF = np.column_stack([PF[:,0], PF[:,1], PF[:,1], PF[:,2]])
+	PF = np.column_stack([PF[:,0], PF[:,1], PF[:,1], PF[:,2]]) #No need of reordering
 
 	save_front(PF, "../outputs/MOEAD/Crash_"+str(i+1)+".bin", [2,2])
 		    
@@ -70,7 +70,7 @@ def optimize_nsga2(i):
 		           
 	PF = postfiltering(res.F, [[True, True, False],[False, True, True]])
 
-	PF = np.column_stack([PF[:,0], PF[:,1], PF[:,1], PF[:,2]])
+	PF = np.column_stack([PF[:,0], PF[:,1], PF[:,1], PF[:,2]]) #No need of reordering
 
 	save_front(PF, "../outputs/NSGA-II/Crash_"+str(i+1)+".bin", [2,2])
 

@@ -1,4 +1,4 @@
-from problems import MPL5_std
+from problems import PL_C_std
 from pymoo.algorithms.moo.nsga3 import NSGA3
 from pymoo.algorithms.moo.nsga2 import NSGA2
 from pymoo.algorithms.moo.moead import MOEAD
@@ -10,18 +10,19 @@ import numpy as np
 from multiprocessing import Pool
 from math import pi
 
+n_var = 2
 
 r  = lambda X : np.sqrt(X[:,0]**2+X[:,1]**2)
 
 f4 = lambda X : np.cos(2*r(X))
 f5 = lambda X : -np.sin(2*r(X))
 
-f6 = lambda X : numpy.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*4), axis=1)
-f7 = lambda X : numpy.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*[10, 6]), axis=1)
-f8 = lambda X : numpy.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*[6, 10]), axis=1)
+f6 = lambda X : np.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*4), axis=1)
+f7 = lambda X : np.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*[10, 6]), axis=1)
+f8 = lambda X : np.linalg.norm(X-(np.ones((np.size(X, axis=0), n_var))*[6, 10]), axis=1)
 
 def optimize_nsga3(i):
-    problem = MPL5_std()
+    problem = PL_C_std()
 
     ref_dirs = get_reference_directions("das-dennis", 3, n_partitions=12)
     algorithm = NSGA3(ref_dirs = ref_dirs,
@@ -35,11 +36,11 @@ def optimize_nsga3(i):
                    save_history=False,
                    verbose=False)
                    
-    F4 = f4(res.F)
-    F5 = f5(res.F)
-    F6 = f6(res.F)
-    F7 = f7(res.F)
-    F8 = f8(res.F)
+    F4 = f4(res.X)
+    F5 = f5(res.X)
+    F6 = f6(res.X)
+    F7 = f7(res.X)
+    F8 = f8(res.X)
 
     PF = np.column_stack([res.F, F4, F5, F6, F7, F8])
 
@@ -49,7 +50,7 @@ def optimize_nsga3(i):
 
 def optimize_moead(i):
 
-    problem = MPL5_std()
+    problem = PL_C_std()
 
     ref_dirs = get_reference_directions("das-dennis", 3, n_partitions=12)
     algorithm = MOEAD(ref_dirs = ref_dirs,
@@ -65,11 +66,11 @@ def optimize_moead(i):
                    save_history=False,
                    verbose=False)
                    
-    F4 = f4(res.F)
-    F5 = f5(res.F)
-    F6 = f6(res.F)
-    F7 = f7(res.F)
-    F8 = f8(res.F)
+    F4 = f4(res.X)
+    F5 = f5(res.X)
+    F6 = f6(res.X)
+    F7 = f7(res.X)
+    F8 = f8(res.X)
     
     PF = np.column_stack([res.F, F4, F5, F6, F7, F8, F9])
 
@@ -77,7 +78,7 @@ def optimize_moead(i):
             
 def optimize_nsga2(i):
 
-    problem = MPL5_std()
+    problem = PL_C_std()
 
     algorithm = NSGA2(pop_size = 100)
 
@@ -89,11 +90,11 @@ def optimize_nsga2(i):
                    save_history=False,
                    verbose=False)
                    
-    F4 = f4(res.F)
-    F5 = f5(res.F)
-    F6 = f6(res.F)
-    F7 = f7(res.F)
-    F8 = f8(res.F)
+    F4 = f4(res.X)
+    F5 = f5(res.X)
+    F6 = f6(res.X)
+    F7 = f7(res.X)
+    F8 = f8(res.X)
 
     PF = np.column_stack([res.F, F4, F5, F6, F7, F8, F9])
 
